@@ -180,14 +180,23 @@ var onClickAdd = function onClickAdd() {
   // テキストボックスの値を取得し、初期化する(フォームに文字が残らないようにする)
   var inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
+  createIncompleteList(inputText);
+};
 
+// 未完了リストから指定の要素を削除
+var deleteFromIncompleteList = function deleteFromIncompleteList(target) {
+  document.getElementById("incomplete-list").removeChild(target);
+};
+
+// 未完了リストに追加する関数
+var createIncompleteList = function createIncompleteList(text) {
   // div生成
   var div = document.createElement("div");
   div.className = "list-row";
 
   // liタグ生成
   var li = document.createElement("li");
-  li.innerText = inputText;
+  li.innerText = text;
 
   //button(完了)タグ生成
   var completeButton = document.createElement("button");
@@ -210,14 +219,22 @@ var onClickAdd = function onClickAdd() {
     // button(戻すボタン)タグ生成
     var backButton = document.createElement("button");
     backButton.innerText = "戻す";
-    // console.log(backButton);
+    backButton.addEventListener("click", function () {
+      // 押された戻すボタンの親タグ(div)を未完了リストから削除
+      var deleteTarget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget);
+
+      // テキスト取得
+      var text = backButton.parentNode.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //divタグの子要素に各要素を設定
     addTarget.appendChild(li);
     addTarget.appendChild(backButton);
 
     // 完了リストに追加
-    document.getElementById("complete-list").append(addTarget);
+    document.getElementById("complete-list").appendChild(addTarget);
   });
 
   // button(削除)タグ生成
@@ -234,18 +251,7 @@ var onClickAdd = function onClickAdd() {
   div.appendChild(deleteButton);
 
   // 未完了リストに追加
-  document.getElementById("incomplete-list").append(div);
-
-  /**
-   * タスクの完了機能
-   */
-
-  // div生成
-};
-
-// 未完了リストから指定の要素を削除
-var deleteFromIncompleteList = function deleteFromIncompleteList(target) {
-  document.getElementById("incomplete-list").removeChild(target);
+  document.getElementById("incomplete-list").appendChild(div);
 };
 document.getElementById("add-button").addEventListener("click", function () {
   return onClickAdd();
