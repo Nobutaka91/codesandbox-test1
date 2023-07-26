@@ -5,17 +5,16 @@
 	<title>TO-DO(JS)</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/styles.dd855970.css">
-	<script src="/script.baf0e655.js"></script>
-<script src="/styles.dd855970.js"></script></head>
+<script src="/styles.dd855970.js"></script><link rel="stylesheet" href="/script.baf0e655.css"></head>
 
 <body>
 	<div class="input-area">
-		<input placeholder="TODOを入力">
+		<input id="add-text" placeholder="TODOを入力">
 		<button id="add-button">追加</button>
 	</div>
 	<div class="imcomplete-area">
 		<p class="title">未完了のTODO</p>
-		<ul>
+		<ul id="incomplete-list">
 			<div class="list-row">
 				<li>TODOです</li>
 				<button>完了</button>
@@ -30,13 +29,14 @@
 	</div>
 	<div class="complete-area">
 		<p class="title">完了したTODO</p>
-		<ul>
+		<ulb id="complete-list">
 			<div class="list-row">
 				<li>TODOでした</li>
-				<button>戻す</button>
+				<button>もどる</button>
 			</div>
-		</ul>
-	</div>
+		
+	</ulb></div>
+	<script src="/script.baf0e655.js"></script>
 </body>
 
 </html>
